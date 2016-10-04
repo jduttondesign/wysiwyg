@@ -1,6 +1,14 @@
 
-body {
 
-	background-color: lightgrey;
+
+.person__container:nth-child(even) {
+    background-color: yellow;
 }
 
+.person__container:nth-child(odd) {
+    background-color: blue;
+}
+
+.dotted_border {
+	border: 2px dotted blue;
+}

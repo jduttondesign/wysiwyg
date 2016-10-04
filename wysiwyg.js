@@ -65,7 +65,8 @@ var people = [
     death: 1797
   }
 }];
-
+  
+ var current_text = "";
  var outputEl = document.getElementById("outputEl");
 for (var counter = 0; counter < 5; counter++) {
   // Give each person element a unique identifier
@@ -73,15 +74,31 @@ for (var counter = 0; counter < 5; counter++) {
  console.log("people", people[counter]["lifespan"]["birth"]);
 
  var nameString = "";
-  nameString += `<div class="person__container" id="person--${counter}">`;
-  nameString += `<element>`;
+      nameString += `<div class="person__container">`;
+      nameString += `<element>`;
   		nameString += `<person>`;
   		nameString += `<header>  ${people[counter]["name"]} the ${people[counter]["title"]} go here</header>`;
-  		nameString += `<section> ${people[counter]["bio"]} the ${people[counter]["image"]} go here</section>`;
+  		nameString += `<section id="person--${counter}"> ${people[counter]["bio"]} the ${people[counter]["image"]} go here</section>`;
   		nameString += `<footer> birth ${people[counter]["lifespan"]["birth"]} death ${people[counter]["lifespan"]["death"]}go here </footer>`;
-  nameString += `</person> </element> </div>`;
+      nameString += `</person> </element> </div>`;
   outputEl.innerHTML += nameString;
+  
 }
+ var div = document.getElementsByClassName('person__container');
+
+for(var i = 0; i < div.length; i++) {
+  //console.log("test");
+  document.getElementById(`person--${i}`).addEventListener("click", function() {
+    this.setAttribute("class", "dotted_border");
+    document.getElementById("keypress-input").value = this.innerHTML;
+    document.getElementById("keypress-input").focus();
+    current_text= this.id;
+    console.log(this.id);
+  });
+}
+
+
+
 
 // <div>
 // <element>
