@@ -22,7 +22,7 @@ var people = [
 {
   title: "Samurai",
   name: "Hillary",
-  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
+  bio: "Not Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
   image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
   lifespan: {
     birth: 1747,
@@ -31,7 +31,7 @@ var people = [
 },{
   title: "Someguy",
   name: "Donald",
-  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
+  bio: "Is Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
   image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
   lifespan: {
     birth: 1747,
@@ -40,7 +40,7 @@ var people = [
 },{
   title: "Redhead",
   name: "Fred",
-  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
+  bio: "Wont Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
   image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
   lifespan: {
     birth: 1747,
@@ -70,8 +70,8 @@ var people = [
  var outputEl = document.getElementById("outputEl");
 for (var counter = 0; counter < 5; counter++) {
   // Give each person element a unique identifier
- console.log("people", people[counter]);
- console.log("people", people[counter]["lifespan"]["birth"]);
+ // console.log("people", people[counter]);
+ // console.log("people", people[counter]["lifespan"]["birth"]);
 
  var nameString = "";
       nameString += `<div class="person__container">`;
@@ -86,29 +86,31 @@ for (var counter = 0; counter < 5; counter++) {
 }
  var div = document.getElementsByClassName('person__container');
 
+var currentSelectedDiv;
+
 for(var i = 0; i < div.length; i++) {
   //console.log("test");
-  document.getElementById(`person--${i}`).addEventListener("click", function() {
-    this.setAttribute("class", "dotted_border");
-    document.getElementById("keypress-input").value = this.innerHTML;
-    document.getElementById("keypress-input").focus();
-    current_text= this.id;
-    console.log(this.id);
+  document.getElementById(`person--${i}`).addEventListener("click", function(e) {
+    console.log("e", e.target);
+    currentSelectedDiv = e.target;
+    e.target.setAttribute("class", "dotted_border");
+    document.getElementById("user-input").value = e.target.innerHTML;
+    document.getElementById("user-input").focus();
+    current_text= e.target.id;
+    //console.log(this.id);
   });
 }
 
+document.getElementById("user-input").addEventListener("keyup", function (event){
+  console.log("currentSelectedDiv", currentSelectedDiv);
+  currentSelectedDiv.innerHTML = document.getElementById("user-input").value;
+});
 
-
-
-// <div>
-// <element>
-// <person>
-//   <header>Name and title go here</header>
-//   <section>Bio and image go here</section>
-//   <footer>Lifespan info goes here</footer>
-// </person>
-// </element>
-// </div>
+  // userInput.focus();
+  // userInput.addEventListener("keyup", function (event){
+  //   event.preventDefault();
+  //   bioSection.innerHTML = userInput.value;
+  // }
 
 // // Now containerEl will have elements in it
 // var containerEl = document.getElementsByClassName("person__container");
